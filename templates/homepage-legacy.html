@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>GahioGames - {{title}}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="RAFAEL, gahio, and paulo">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="static/img/fallout.ico" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+	<nav>
+		<ul id="topo">
+			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
+			<li><a href="{{ url_for('about') }}">Info</a></li>
+			<li class="drop">
+			<a href="#" class="drop">&middot;Notícias&middot;</a>
+			<div class="cont">
+				<a href="#">Redes</a>
+				<a href="#">Hardware</a>
+				<a href="#">Software</a>
+			</div>
+			</li>
+			<li><a href="{{ url_for('contact') }}">Contato</a></li>
+			<li><a href="{{ url_for('sign') }}"><b>Inscreva-se</b></a></li>
+		</ul>
+	</nav>
+	{% block content %}
+	<h1>Informática</h1>
+	<a href="#btn"><button id="circle"><i class="fa fa-chevron-down fa-3x"></i></button></a>
+	<img id="hero" src="static/img/img103.png" alt="fullback"></img>
+	<section>
+		<h2><a href="{{ url_for('login') }}">Login</a></h2>
+		<article class="bla">
+			<h2>Apresentação</h2>
+			<p>Este é um site criado por Rafael, Paulo e G. Gahio, alunos do <abbr title="Instituto Federal Catarinense"><strong>IFC Blumenau</strong></abbr> na disciplina de Desenvolvimento Web no ano letivo de 2017, turma <a href="{{ url_for('turma') }}">Info-201</a>.</p>
+		</article>
+		<br>
+		<article id="ble">
+			<h2>Objetivo</h2>
+			<p>Este é um site que tem o objetivo de informar e entreter alunos e servidores como um todo, visando o aprendizado coletivo.</p>
+		</article>
+		<article>
+			<h2>Conteúdos</h2>
+				<table>
+					<tr>
+						<th colspan="3">Assuntos</th>
+					</tr>
+					<tr>
+						<th>Hardware</th> 
+						<th>Software</th>
+						<th>Redes</th>
+					</tr>
+					<tr>
+						<td>Componentes</td>
+						<td>Sistema Hexadecimal</td>
+						<td>Portas Lógicas</td>
+					</tr>
+					<tr>
+						<td>Processadores</td>
+						<td>Sistema Binário</td>
+						<td>Protocolos</td>
+					</tr>
+					<tr>
+						<td>Arquiteura x86</td>
+						<td>Sistemas Operacionais</td>
+						<td>TCP/IP</td>
+					</tr>
+					<tr>
+						<td>Placa-mãe</td>
+						<td><em>Kernel</em></td>
+						<td>OSI</td>
+					</tr>
+			</table>
+		</article>
+	</section>
+	<footer id="btn">
+		<div>&copy; Powered by <a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS válido!"></a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &middot; 2018</div>
+	</footer>
+	{% endblock %}
+</body>
+</html>

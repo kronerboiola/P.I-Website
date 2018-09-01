@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<title>GahioGames - {{ title }}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ 'static/css', filename=url_for('turminhaCSS.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app='turma' ng-init='cont=0'>
+	<nav>
+		<ul id="topo">
+			<li><a href="homepage.html" target="_blank">Home</a></li>
+			<li><a href="sobre.html">Info</a></li>
+			<li class="drop">
+			<a href="#.html" class="drop">&middot;Notícias&middot;</a>
+			<div class="cont">
+				<a href="#">Redes</a>
+				<a href="#">Hardware</a>
+				<a href="#">Software</a>
+			</div>
+			</li>
+			<li><a href="contate.html">Contato</a></li>
+			<li><a href="inscreva.html"><b>Inscreva-se</b></a></li>
+		</ul>
+	</nav>
+	<h1>Turma</h1>
+	<hr>
+	<br>
+	<noscript>Este navegador não tem suporte à Javascript!!!</noscript>
+	<p>Este é um site criado por Rafael, Paulo e Matheus, alunos do <abbr title="Instituto Federal Catarinense"><strong>IFC Blumenau</strong></abbr> na disciplina de Desenvolvimento Web no ano letivo de 2017 e cujo objetivo é <q>disseminar conhecimento e alegria!</q></p>
+	<br>
+	<section>
+		<article>
+			<h3>Horários</h3>
+			<br>
+			<p style='line-height: 140%; width: 100%; margin-left: -5px;'>Das <time>08:00</time> às <time>17:00</time> na sala C05.</p>
+		</article>
+		<br>
+		<article>
+			<h3>Localização</h3>
+			<br>
+			<address>
+				Rua Bernardino de Oliveira, nº 666
+				<br>
+				Site Oficial: <a href="https://blumenau.ifc.edu.br/">IFC Blumenau</a>
+				<br>
+				Santa Catarina, Brazil
+			</address>
+		</article>
+	</section>
+	<article>
+		<figure>
+			<h3 id="logo">Gahio Shooter</h3>
+			<br>
+			<br>
+			<img src="C:\Users\RAFAEL\Pictures\csgo2.jpg" alt="csgo" ng-click='cont = cont + 1' width="270" height="175">
+			<br>
+			<h4 ng-show='cont < 6'>Noob...</h4>
+			<h4 ng-show='cont > 20'>Godlike!!!</h4>
+		</figure>
+		<p style="margin-left: 37%;">Tiros acertados: <{cont}></p>
+	</article>
+	<article style="margin-right: 40%;">
+		<h3>Estatísticas</h3>
+		<h5>Alunos com notas baixas</h5>
+		<meter min="0" max="10" value="7"></meter>
+		<h5>Alunos que vão reprovar</h5>
+		<meter value="0.9"></meter>
+	</article>
+	<script>
+		var app = angular.module('turma', []);
+		app.config(['$interpolateProvider', function($interpolateProvider) {
+		  $interpolateProvider.startSymbol('<{'); //dont enter in conflict with jinja2
+		  $interpolateProvider.endSymbol('}>');
+		}]);
+		var x = Math.random();
+		if (x < 0.33) {
+			document.getElementsByTagName('body')[0].style.backgroundColor = "lightgrey";
+		} 
+		else if (x<0.67 & x>0.33){
+			document.getElementsByTagName('body')[0].style.backgroundColor = "skyblue";
+		}
+		else {
+			document.getElementsByTagName('body')[0].style.backgroundColor = "orange";
+		}
+	</script>
+</body>
+</html>

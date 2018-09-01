@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script-->
+	<title>GahioGames - {{title}}</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sign.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menubar.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="static/img/fallout.ico" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+	<nav>
+		<ul id="menu" style="top: -16px; left: 0;">
+			<li><a href="#" target="_blank">Home</a></li>
+			<li><a href="#">Info</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown">&middot;Notícias&middot;</a>
+				<div class="cont">
+					<a href="#">Redes</a>
+					<a href="#">Hardware</a>
+					<a href="#">Software</a>
+				</div>
+			</li>
+			<li><a href="#">Contato</a></li>
+			<li>
+				<a href="#"><b style="font-family: 'Comic Sans MS';">Inscreva-se</b></a>
+			</li>
+		</ul>
+	</nav>
+
+	<div><!-- class="heroimg"-->
+		<div style="text-align: center;">
+			<br>
+			<h1>Inscreva-se</h1>
+			<h4>Para saber de todas nossas novidades!!!</h4>
+			<form autocomplete="on" name="formula" method="post">
+				{{ form.hidden_tag() }}
+				<p> {{ form.user(placeholder="Username", size=26) }} </p>
+				{% for error in form.user.errors %}
+				<p style="color: red;"> {{ error }} </p>
+				{% endfor %}
+
+				<p> {{ form.email(placeholder="E-mail", size=22) }} </p>
+				{% for error in form.email.errors %}
+				<p style="color: red;"> {{ error }} </p>
+				{% endfor %}
+
+				<p>{{ form.submit() }}</p>
+			</form>
+			{% if session["logged"] %}
+			<h2>You are logged as {{ session["username"] }}</h2>
+			<a href="{{ url_for('logout') }}">Sair</a>
+			{% endif %}
+
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<ul style="text-align: center;">
+				{% for msg in messages %}
+				<li style="float: none;">{{ msg }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{% endwith %}
+
+			<h4>Visite nossas outras páginas também!!!</h4>
+			<span class="fa fa-facebook-square icon" onclick="location.href='https://facebook.com';"></span>
+			<a href="https://store.steampowered.com" class="icon">
+				<span class="fa fa-steam-square"></span>
+			</a>
+			<a href="https://twitter.com" class="icon">
+				<span class="fa fa-google-plus-official"></span>
+			</a>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contate-nos!</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="contateCSS.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app='mod'>
+	<nav>
+		<ul id="topo">
+			<li><a href="homepage.html" target="_blank">Home</a></li>
+			<li><a href="sobre.html">Info</a></li>
+			<li class="drop">
+			<a href="#" class="drop">&middot;Notícias&middot;</a>
+			<div class="cont">
+				<a href="#">Redes</a>
+				<a href="#">Hardware</a>
+				<a href="#">Software</a>
+			</div>
+			</li>
+			<li><a href="contate.html">Contato</a></li>
+			<li><a href="inscreva.html"><b>Inscreva-se</b></a></li>
+		</ul>
+	</nav>
+	<br>
+	<br>
+	<br>
+	<h1>Contate-nos</h1>
+	<h4>Aceitamos críticas e sugestões!</h4>
+	<br>
+	<div ng-controller='ctrl'>
+		<label for="msg">Escolha o tipo de mensagem: </label>
+		<select name="msg" ng-model='escolhido' ng-options='x for x in tipos'></select>
+		<h3>Você vai realizar: {{escolhido}}</h3>
+	</div>
+	<form method="post" action="mailto:jailsoncomemilf@gmail.com">
+		<textarea cols="40" rows="8" placeholder="Escreva aqui: "></textarea>
+		<br>
+		<br>
+		<div style="margin-left: 45%;">
+			<button type="submit" value="submit" onclick="alert('Obrigado pela opinião!')">Enviar</button>
+			<button style="background-color: red;" value="reset" type="reset">Limpar</button>
+		</div>
+	</form>
+	<script>
+		var app = angular.module('mod', []);
+		app.controller('ctrl', function($scope) {
+			$scope.tipos = ['Reclamação', 'Dúvida', 'Elogio'];
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>Sobre nós</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sobreCSS.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--icones fa fa-->
+	<link href="C:/Users/RAFAEL/Music/fallout.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="https://fonts.googleapis.com/css?family=Arimo:700i" rel="stylesheet">
+</head>
+<body>
+	<nav>
+		<ul id="topo">
+		<!--menu horizontal-->
+			<li><a href="homepage.html" target="_blank">Home</a></li>
+			<li><a href="#">Sobre nós</a></li>
+			<li class="drop">
+			<a href="#.html" class="drop">&middot;Assuntos&middot;</a>
+			<div class="cont">
+				<a href="#">Redes</a>
+				<a href="#">Hardware</a>
+				<a href="#">Software</a>
+			</div>
+			</li>
+			<li><a href="contate.html">Contato</a></li>
+			<li><a href="inscreva.html"><b>Inscreva-se</b></a></li>
+		</ul>
+	</nav>
+	<br>
+	<section>
+		<h1>Sobre nós</h1>
+		<br>
+		<blockquote>Este é um <i>site</i> criado por Rafael, Paulo e G. Gahio, alunos do <abbr title="Instituto Federal">IFC</abbr> com o objetivo de informar e entreter alunos e servidores da escola como um todo.</blockquote>
+		<h2><a href="#" onclick="show('a1')">Quem somos? <span class="fa fa-chevron-down"></span></a></h2>
+		<blockquote id="a1">Este <i>site</i> foi criado por Rafael, Paulo e G. Gahio, alunos do <abbr title="Instituto Federal">IFC</abbr> na disciplina de Desenvolvimento Web no ano de 2017, turma Info-101.</blockquote>
+		<h2><a href="#" onclick="show('a2')">Nosso objetivo <span class="fa fa-chevron-down"></span></a></h2>
+		<blockquote id="a2">O objetivo dos criadores é informar e entreter alunos e servidores como um todo, objetivando o aprendizado coletivo.</blockquote>
+		<br>
+		<h3>Site certificado pela W3Schools<sup><small> Ou não!</small></sup></h3>
+		<a href="http://jigsaw.w3.org/css-validator/check/referer">
+			<img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS válido!">
+		</a>
+	</section>
+	<script type="text/javascript">
+		function show(id) {
+			var x = document.getElementById(id).style.display;
+			/*var y = document.getElementsByClassName('fa fa-chevron-down');*/
+			if (x == "none") {
+				document.getElementById(id).style.display = "block";
+				/*for (var i = 0; i < y.length; i++) {
+					y[i].classList.toggle("fa fa-chevron-up");
+				}*/
+			}
+			else {
+				document.getElementById(id).style.display = "none";
+				/*for (var i = 0; i < y.length; i++) {
+					y[i].classList.toggle("fa fa-chevron-down");
+				}*/
+			}
+		}
+		/*var x = Math.random();
+		if (x < 0.33) {
+			document.getElementsByTagName('body')[0].style.background = "radial-gradient(circle, white, lightsteelblue)";
+		} 
+		else if (x<0.67 & x>0.33){
+			document.getElementsByTagName('body')[0].style.background = "radial-gradient(circle, white, lime)";
+		}
+		else {
+			document.getElementsByTagName('body')[0].style.background = "radial-gradient(circle, white, red)";
+		}*/
+	</script>
+</body>
+</html>

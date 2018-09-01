@@ -1,0 +1,65 @@
+/*body{
+	background: linear-gradient(to right, silver, white, silver);
+}*/
+h1{
+	font-weight: 600;
+	text-align: center;
+	font-family: 'Pricedown';
+	font-size: 62px;
+	padding: 10px;
+	margin-bottom: -5px;
+	text-shadow: 2px 3px darkorange;
+}
+input{
+	margin: 7px;
+	padding: 10px;
+	border-radius: 10px;
+	font-size: 18px;
+}
+input[type=text]:focus{
+	border: 3px solid #333;
+	box-shadow: 2px 2px lime;
+}
+input[type=password]:focus{
+	border: 3px solid #333;
+	box-shadow: 2px 2px blue;
+}
+input[type=email]:focus{
+	border: 3px solid #333;
+	box-shadow: 2px 2px yellow;
+}
+button{
+	padding: 10px;
+	width: 85px;
+	border-radius: 5px;
+	margin: 5px;
+	font-size: 16px;
+	opacity: 0.9;
+	border: 3px solid green;
+}
+button:hover{
+	opacity: 1;
+}
+button:active{
+	color: white;
+	background-color: darkgrey;
+	font-size: 15px;
+	box-shadow: 3px 3px #333;
+}
+.icon{
+	font-size: 40px;
+	margin-right: 15px;
+}
+.fa:hover{
+	font-size: 42px;
+	opacity: 0.75;
+}
+.fa-google-plus-official{
+	color: #dd4b39;
+}
+.fa-facebook-square{
+	color: navy;
+}
+.fa-steam-square{
+	color: black;
+}

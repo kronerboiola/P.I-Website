@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>GahioGames - {{title}}</title>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+	<script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/menu_slider.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="{{ url_for('static', filename='img/fallout.ico') }}" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom_scrollbar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menubar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsiveness.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hero_bg.css') }}">
+	<!--link rel="stylesheet" type="text/css" href="css/tooltip.css"-->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="get_msg('Informática');typewrite('informática')">
+	<nav>
+		<ul id="menu">
+			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
+			<li><a href="{{ url_for('about') }}">Info</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown">&middot;Notícias&middot;</a>
+				<div class="cont">
+					<a href="#">Redes</a>
+					<a href="#">Hardware</a>
+					<a href="#">Software</a>
+				</div>
+			</li>
+			<li><a href="{{ url_for('contact') }}">Contato</a></li>
+			<li><a href="{{ url_for('sign') }}">
+				<b style="font-family: 'Comic Sans MS';">Inscreva-se</b> <!--change to 'CADASTRO'???-->
+			</a></li>
+		</ul>
+	</nav>
+
+	<div class="heroimg">
+		<div class="herotxt">
+			<h1></h1>
+				<button id="circle" onclick="location.href='#btn';">
+					<i class="fa fa-chevron-down fa-3x"></i>
+				</button>
+		</div>
+	</div>
+
+	<section>
+		<article>
+			<h2>Apresentação</h2>
+			<p>Este é um site criado por Rafael, Paulo e G. Gahio, alunos do IFC Blumenau
+			<!--span class="tip">IFC Blumenau
+				<strong class="tiptxt">Instituto Federal Catarinense</strong>
+			</span--> na disciplina de Projeto Integrador no ano letivo de 2018, turma <a href="#">Info-201</a>.</p>
+		</article>
+
+		<!--<div class="vbar"></div>-->
+
+		<article>
+			<h2>Objetivo</h2>
+			<p>Este é um site que tem o objetivo de informar, entreter e compartilhar conhecimento com alunos e servidores como um todo, visando o aprendizado coletivo.</p>
+		</article>
+
+		<article>
+			<h2>Conteúdos</h2>
+				<table>
+					<tr>
+						<th colspan="3">Assuntos</th>
+					</tr>
+					<tr>
+						<th>Hardware</th> 
+						<th>Software</th>
+						<th>Redes</th>
+					</tr>
+					<tr>
+						<td>Componentes</td>
+						<td>Sistema Hexadecimal</td>
+						<td>Portas Lógicas</td>
+					</tr>
+					<tr>
+						<td>Processadores</td>
+						<td>Sistema Binário</td>
+						<td>Protocolos</td>
+					</tr>
+					<tr>
+						<td>Arquiteura x86</td>
+						<td>Sistemas Operacionais</td>
+						<td>TCP/IP</td>
+					</tr>
+					<tr>
+						<td>Placa-mãe</td>
+						<td><em>Kernel</em></td>
+						<td>OSI</td>
+					</tr>
+			</table>
+		</article>
+	</section>
+
+	<div class="heroimg" style="height: 75%;background-image: url('static/img/achievement.jpg');">
+		<div class="herotxt">
+			<h1>A equipe</h1>
+		</div>
+	</div>
+
+	<section style="justify-content: center;height: 65%;">
+		<div class="card">
+			<img src="static/img/kroner.jpg" alt="kroner">
+			<div>
+				<h3>Paulo Maciel</h3>
+				<p style="color: grey;">Gerente geral</p>
+				<p>Tem ótimas habilidades psicossociais, expecialmente liderança, disciplina e respeito para com a equipe.</p>
+			</div>
+		</div>
+
+		<div class="card">
+			<img src="static/img/myself.png" alt="igor" width="184" height="184">
+			<div>
+				<h3>Igor</h3>
+				<p style="color: gray;">CEO &amp; idealizador</p>
+				<p>Sempre ativo e disposto a aprender e a colaborar com a equipe, nada pode pará-lo de alcançar a vitória com seus colegas.</p>
+			</div>
+		</div>
+
+		<div class="card">
+			<img src="static/img/el_gahio.png" alt="gahio" width="184" height="184">
+			<div>
+				<h3>G. Gahio</h3>
+				<p style="color: grey;">Ajudante</p>
+				<p>Jovem e alegre, tem qualidades excepcionais, como boa capacidade de comunicação e sagacidade ilimitada!</p>
+			</div>
+		</div>
+	</section>
+
+	<div class="heroimg" style="height: 40%;background-image: url('static/img/beach.jpg');">
+		<div class="herotxt">
+			<h1>Bye...</h1>
+		</div>
+	</div>
+
+	<footer id="btn">
+		<div>&copy; Powered by <a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS válido!"></a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &middot; 2018</div>
+	</footer>
+</body>
+</html>
