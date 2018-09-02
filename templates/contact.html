@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Contate-nos!</title>
+	<title>GahioGames - Contato</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="contateCSS.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
-<body ng-app='mod'>
+<body>
 	<nav>
 		<ul id="topo">
 			<li><a href="homepage.html" target="_blank">Home</a></li>
@@ -23,31 +22,23 @@
 			<li><a href="inscreva.html"><b>Inscreva-se</b></a></li>
 		</ul>
 	</nav>
-	<br>
-	<br>
-	<br>
+
 	<h1>Contate-nos</h1>
 	<h4>Aceitamos críticas e sugestões!</h4>
 	<br>
-	<div ng-controller='ctrl'>
+	<div>
 		<label for="msg">Escolha o tipo de mensagem: </label>
-		<select name="msg" ng-model='escolhido' ng-options='x for x in tipos'></select>
+		<select name="msg"></select>
 		<h3>Você vai realizar: {{escolhido}}</h3>
 	</div>
-	<form method="post" action="mailto:jailsoncomemilf@gmail.com">
+	<form method="post">
 		<textarea cols="40" rows="8" placeholder="Escreva aqui: "></textarea>
 		<br>
 		<br>
 		<div style="margin-left: 45%;">
-			<button type="submit" value="submit" onclick="alert('Obrigado pela opinião!')">Enviar</button>
+			<button type="submit" value="submit">Enviar</button>
 			<button style="background-color: red;" value="reset" type="reset">Limpar</button>
 		</div>
 	</form>
-	<script>
-		var app = angular.module('mod', []);
-		app.controller('ctrl', function($scope) {
-			$scope.tipos = ['Reclamação', 'Dúvida', 'Elogio'];
-		});
-	</script>
 </body>
 </html>

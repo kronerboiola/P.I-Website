@@ -1,7 +1,10 @@
+:root{
+	--bg-img: url('../img/fjords.png');
+}
 .heroimg{
 	position: relative;
 	background-repeat: no-repeat;
-	background-image: url('../img/fjords.png');
+	background-image: var(--bg-img);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;

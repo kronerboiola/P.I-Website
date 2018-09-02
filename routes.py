@@ -1,6 +1,7 @@
 from flask import *
 from flask_mail import Mail, Message
 from forms import *
+from random import choice
 '''from models import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate'''
@@ -14,6 +15,8 @@ app.config['MAIL_PASSWORD'] = open(r"C:\Users\RAFAEL\Videos\Site_PI\app\highway.
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
+error_messages = ['Prepare-se para consequências inesperadas', 'And another page bites the dust...',
+ 'Away with you, vile error!', 'Mayday, Mayday!!!']
 '''app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -98,6 +101,10 @@ def logout():
 	session['logged'] = False
 	#logged = False
 	return render_template('logout.html')
+
+@app.errorhandler(404)
+def not_found(e):
+	return render_template('404.html', msg=choice(error_messages)), 404
 
 if __name__ == '__main__':
 	#db.create_all()

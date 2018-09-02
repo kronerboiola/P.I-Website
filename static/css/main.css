@@ -82,10 +82,6 @@ table tr:nth-child(even){
 		color: purple;
 	}
 }
-/*article{
-	width: 48%;
-	flex: 50%;
-}*/
 p{
 	font-size: 18px;
 	text-align: justify;
@@ -147,10 +143,3 @@ footer div{
 .card:hover{
 	box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.2);
 }
-/*.vbar{
-	border-left: 7px solid lightblue;
-	height: 125px;
-	position: absolute;
-	left: 51%;
-	z-index: -1;
-}*/

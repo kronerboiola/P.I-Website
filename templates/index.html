@@ -2,7 +2,6 @@
 <html lang="pt-br">
 <head>
 	<title>GahioGames - {{title}}</title>
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
 	<script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/menu_slider.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
@@ -14,7 +13,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menubar.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsiveness.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hero_bg.css') }}">
-	<!--link rel="stylesheet" type="text/css" href="css/tooltip.css"-->
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +21,7 @@
 	<nav>
 		<ul id="menu">
 			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
-			<li><a href="{{ url_for('about') }}">Info</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown">&middot;Notícias&middot;</a>
 				<div class="cont">
@@ -34,7 +32,7 @@
 			</li>
 			<li><a href="{{ url_for('contact') }}">Contato</a></li>
 			<li><a href="{{ url_for('sign') }}">
-				<b style="font-family: 'Comic Sans MS';">Inscreva-se</b> <!--change to 'CADASTRO'???-->
+				<b style="font-family: 'Comic Sans MS';">Inscreva-se</b>
 			</a></li>
 		</ul>
 	</nav>
@@ -56,8 +54,6 @@
 				<strong class="tiptxt">Instituto Federal Catarinense</strong>
 			</span--> na disciplina de Projeto Integrador no ano letivo de 2018, turma <a href="#">Info-201</a>.</p>
 		</article>
-
-		<!--<div class="vbar"></div>-->
 
 		<article>
 			<h2>Objetivo</h2>
@@ -116,7 +112,7 @@
 		</div>
 
 		<div class="card">
-			<img src="static/img/myself.png" alt="igor" width="184" height="184">
+			<img src="static/img/payne2.jpg" alt="igor" width="184" height="184">
 			<div>
 				<h3>Igor</h3>
 				<p style="color: gray;">CEO &amp; idealizador</p>
