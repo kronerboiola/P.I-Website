@@ -3,6 +3,7 @@
 <head>
 	<title>GahioGames - {{title}}</title>
 	<script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/slideshow.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/menu_slider.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
 
@@ -32,7 +33,7 @@
 			</li>
 			<li><a href="{{ url_for('contact') }}">Contato</a></li>
 			<li><a href="{{ url_for('sign') }}">
-				<b style="font-family: 'Comic Sans MS';">Inscreva-se</b>
+				<b>Inscreva-se</b>
 			</a></li>
 		</ul>
 	</nav>
@@ -40,7 +41,11 @@
 	<div class="heroimg">
 		<div class="herotxt">
 			<h1></h1>
-				<button id="circle" onclick="location.href='#btn';">
+				<span class="dot"></span> 
+				<span class="dot"></span> 
+				<span class="dot"></span>
+				<span class="dot"></span>
+				<button id="circle" onclick="var x = setInterval(smooth_scroll, 100);">
 					<i class="fa fa-chevron-down fa-3x"></i>
 				</button>
 		</div>

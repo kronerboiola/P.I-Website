@@ -12,8 +12,8 @@
 <body>
 	<nav>
 		<ul id="menu" style="top: -16px; left: 0;">
-			<li><a href="#" target="_blank">Home</a></li>
-			<li><a href="#">Info</a></li>
+			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown">&middot;Notícias&middot;</a>
 				<div class="cont">
@@ -22,9 +22,9 @@
 					<a href="#">Software</a>
 				</div>
 			</li>
-			<li><a href="#">Contato</a></li>
+			<li><a href="{{ url_for('contact') }}">Contato</a></li>
 			<li>
-				<a href="#"><b style="font-family: 'Comic Sans MS';">Inscreva-se</b></a>
+				<a href="{{ url_for('sign') }}"><b>Inscreva-se</b></a>
 			</li>
 		</ul>
 	</nav>
@@ -34,7 +34,9 @@
 			<br>
 			<h1>Inscreva-se</h1>
 			<h4>Para saber de todas nossas novidades!!!</h4>
-			<form autocomplete="on" name="formula" method="post">
+
+			{% if not session["logged"] %}
+			<form autocomplete="on" method="post">
 				{{ form.hidden_tag() }}
 				<p> {{ form.user(placeholder="Username", size=26) }} </p>
 				{% for error in form.user.errors %}
@@ -48,9 +50,16 @@
 
 				<p>{{ form.submit() }}</p>
 			</form>
+			{% endif %}
+
 			{% if session["logged"] %}
-			<h2>You are logged as {{ session["username"] }}</h2>
-			<a href="{{ url_for('logout') }}">Sair</a>
+			<br>
+			<h2 style="font-family: sans-serif;">You are logged as {{ session["username"] }}</h2>
+			<a href="{{ url_for('logout') }}">
+				<button id="circle">
+					<i class="fa fa-sign-out fa-2x" style="color: white;"></i>
+				</button>
+			</a>
 			{% endif %}
 
 			{% with messages = get_flashed_messages() %}
@@ -64,7 +73,9 @@
 			{% endwith %}
 
 			<h4>Visite nossas outras páginas também!!!</h4>
-			<span class="fa fa-facebook-square icon" onclick="location.href='https://facebook.com';"></span>
+			<a href="https://facebook.com" class="icon">
+				<span class="fa fa-facebook-square"></span>
+			</a>
 			<a href="https://store.steampowered.com" class="icon">
 				<span class="fa fa-steam-square"></span>
 			</a>

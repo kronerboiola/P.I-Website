@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>Sobre nós</title>
+	<title>GahioGames - {{title}}</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sobreCSS.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/about.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menubar.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--icones fa fa-->
-	<link href="C:/Users/RAFAEL/Music/fallout.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="static/img/fallout.ico" rel="shortcut icon" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Arimo:700i" rel="stylesheet">
 </head>
 <body>
 	<nav>
-		<ul id="topo">
+		<ul id="menu">
 		<!--menu horizontal-->
-			<li><a href="homepage.html" target="_blank">Home</a></li>
-			<li><a href="#">Sobre nós</a></li>
+			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
 			<li class="drop">
-			<a href="#.html" class="drop">&middot;Assuntos&middot;</a>
+			<a href="#" class="drop">&middot;Assuntos&middot;</a>
 			<div class="cont">
 				<a href="#">Redes</a>
 				<a href="#">Hardware</a>
 				<a href="#">Software</a>
 			</div>
 			</li>
-			<li><a href="contate.html">Contato</a></li>
-			<li><a href="inscreva.html"><b>Inscreva-se</b></a></li>
+			<li><a href="{{ url_for('contact') }}">Contato</a></li>
+			<li><a href="{{ url_for('sign') }}"><b>Inscreva-se</b></a></li>
 		</ul>
 	</nav>
 	<br>

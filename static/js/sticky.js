@@ -1,3 +1,7 @@
+function smooth_scroll() {
+	document.documentElement.scrollTop = document.documentElement.scrollTop + 100;
+	if (document.documentElement.scrollTop >= 600) clearInterval(x);
+}
 /*window.onscroll = function {scroll()};
 var header = document.getElementById('menu');
 var stick = header.offsetTop;

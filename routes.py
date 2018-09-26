@@ -11,12 +11,13 @@ app.secret_key = 'guess-it'
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = '101airbornekiller@gmail.com'
-app.config['MAIL_PASSWORD'] = open(r"C:\Users\RAFAEL\Videos\Site_PI\app\highway.txt", 'r').read()
+app.config['MAIL_PASSWORD'] = open("highway.txt", 'r').read()
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 error_messages = ['Prepare-se para consequências inesperadas', 'And another page bites the dust...',
- 'Away with you, vile error!', 'Mayday, Mayday!!!']
+ 'Away with you, vile error!', 'Mayday, Mayday!!!',
+  'O problema é na mangueira!', 'Houston, nós temos um problema']
 '''app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -30,7 +31,7 @@ def home():
 
 @app.route('/about')
 def about():
-	return render_template('about.html', title='About')
+	return render_template('about.html', title='About Us')
 
 @app.route('/subscription', methods=['GET', 'POST'])
 def sign():
@@ -41,10 +42,13 @@ def sign():
 		session['email'] = form.email.data
 		#session['password'] = form.passw.data
 		session['logged'] = True
-		msg = Message(f'<h1>{session["username"]}, obrigado por increver-se na newsletter!</h1>', sender='101airbornekiller@gmail.com',
-		 recipients=[session['email']])#, body=''.join(open(r'C:\Users\RAFAEL\Videos\Site_PI\app\email-body.html', 'r').readlines()))
+		msg = Message(f'{session["username"]}, obrigado por increver-se na newsletter!', sender='101airbornekiller@gmail.com',
+		 recipients=[session['email']])
 		msg.html = render_template('email-body.html')
-		mail.send(msg)
+		try:
+			mail.send(msg)
+		except: # smtplib.SMTPRecipientsRefused:
+			raise e
 		'''
 		user = User(username=session['username'], psw_hash=bcrypt.hashpw(session['password'].encode('utf8'), bcrypt.gensalt()))
 		db.session.add(user)
@@ -84,13 +88,14 @@ def login():
 		return
 	return render_template('login.html', title='Login', form=form)'''
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-	return render_template('contact.html', title='Contact')
+	return render_template('contact.html', title='Contato',
+	 msg_types=['Reclamação', 'Dúvida', 'Sugestão'])
 
 @app.route('/turma')
 def turma():
-	return render_template('turminha.html', title='Turma')
+	return render_template('turminha.html', title='Nossa Turma')
 
 @app.route('/logout')
 def logout():

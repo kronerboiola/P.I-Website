@@ -15,15 +15,19 @@ li{
 li:last-child{
 	float: right;
 	margin-right: 40px;
-	font-family: 'Comic Sans MS';
 }
 li a{
 	display: block;
 	padding: 12px;
+	margin: 0;
 	text-align: center;
 	color: white;
 	text-decoration: none;
-	font-size: 28px;
+	font-size: 22px;
+	font-family: sans-serif;
+}
+b{
+	font-family: 'Comic Sans MS';
 }
 li a:hover{
 	background-color: black;

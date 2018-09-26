@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>GahioGames - Contato</title>
+	<title>GahioGames - {{title}}</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menubar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contact.css') }}">
 </head>
 <body>
 	<nav>
-		<ul id="topo">
-			<li><a href="homepage.html" target="_blank">Home</a></li>
-			<li><a href="sobre.html">Info</a></li>
-			<li class="drop">
-			<a href="#" class="drop">&middot;Notícias&middot;</a>
-			<div class="cont">
-				<a href="#">Redes</a>
-				<a href="#">Hardware</a>
-				<a href="#">Software</a>
-			</div>
+		<ul id="menu" style="top: -16px; left: 0;">
+			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown">&middot;Notícias&middot;</a>
+				<div class="cont">
+					<a href="#">Redes</a>
+					<a href="#">Hardware</a>
+					<a href="#">Software</a>
+				</div>
 			</li>
-			<li><a href="contate.html">Contato</a></li>
-			<li><a href="inscreva.html"><b>Inscreva-se</b></a></li>
+			<li><a href="{{ url_for('contact') }}">Contato</a></li>
+			<li><a href="{{ url_for('sign') }}"><b>Inscreva-se</b></a></li>
 		</ul>
 	</nav>
 
@@ -27,12 +28,16 @@
 	<h4>Aceitamos críticas e sugestões!</h4>
 	<br>
 	<div>
-		<label for="msg">Escolha o tipo de mensagem: </label>
-		<select name="msg"></select>
-		<h3>Você vai realizar: {{escolhido}}</h3>
+		<label for="msg_type">Escolha o tipo de mensagem: </label>
+		<select name="msg_type">
+			{% for opt in msg_types %}
+			<option value="{{ opt }}">{{ opt }}</option>
+			{% endfor %}
+		</select>
+		<h3>Você vai realizar: {{ request.form.getlist("msg_type") }}</h3>
 	</div>
 	<form method="post">
-		<textarea cols="40" rows="8" placeholder="Escreva aqui: "></textarea>
+		<textarea cols="40" rows="8" placeholder="Escreva aqui... "></textarea>
 		<br>
 		<br>
 		<div style="margin-left: 45%;">
