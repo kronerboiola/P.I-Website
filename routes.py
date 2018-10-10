@@ -11,9 +11,10 @@ app.secret_key = 'guess-it'
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = '101airbornekiller@gmail.com'
-app.config['MAIL_PASSWORD'] = open("highway.txt", 'r').read()
+app.config['MAIL_PASSWORD'] = 'polka0789'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 mail = Mail(app)
 error_messages = ['Prepare-se para consequências inesperadas', 'And another page bites the dust...',
  'Away with you, vile error!', 'Mayday, Mayday!!!',
@@ -22,7 +23,7 @@ error_messages = ['Prepare-se para consequências inesperadas', 'And another pag
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-migrate=Migrate(app, db)'''
+migrate = Migrate(app, db)'''
 
 @app.route('/')
 @app.route('/home')
@@ -37,24 +38,27 @@ def about():
 def sign():
 	form = CustomForm()
 	if form.validate_on_submit():
-		flash('User %s registered!' % form.user.data, 'info')
 		session['username'] = form.user.data
 		session['email'] = form.email.data
 		#session['password'] = form.passw.data
 		session['logged'] = True
-		msg = Message(f'{session["username"]}, obrigado por increver-se na newsletter!', sender='101airbornekiller@gmail.com',
-		 recipients=[session['email']])
+		msg = Message(f'{session["username"]}, obrigado por increver-se na newsletter!',
+		 sender='101airbornekiller@gmail.com', recipients=[session['email']])
 		msg.html = render_template('email-body.html')
 		try:
 			mail.send(msg)
 		except: # smtplib.SMTPRecipientsRefused:
-			raise e
+			return flash("There's an error with the typed e-mail!", 'error')
+		flash('User %s registered!' % form.user.data, 'info')
 		'''
-		user = User(username=session['username'], psw_hash=bcrypt.hashpw(session['password'].encode('utf8'), bcrypt.gensalt()))
+		user = User(username=session['username'],
+		 psw_hash=bcrypt.hashpw(session['password'].encode('utf8'),
+		  bcrypt.gensalt()))
 		db.session.add(user)
 		db.session.commit()'''
 		return redirect('/home')
-	return render_template('signup.html', title='Sign Up', form=form)
+	return render_template('signup.html', title='Sign Up',
+	 form=form)
 
 '''def dict_factory(cursor, row):
     d = {}
@@ -113,4 +117,4 @@ def not_found(e):
 
 if __name__ == '__main__':
 	#db.create_all()
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0')

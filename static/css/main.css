@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Virtual DJ';
+    src: url('../fonts/virtual-dj.ttf');
+}
 *{
 	font-family: sans-serif;
 }
@@ -141,5 +145,5 @@ footer div{
 	padding: 0 15px;
 }
 .card:hover{
-	box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.2);
+	box-shadow: 7px 7px 9px rgba(0, 0, 0, 0.35);
 }

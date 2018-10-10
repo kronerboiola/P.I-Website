@@ -3,7 +3,9 @@
     src: url('../fonts/pricedown.ttf');
 }
 body{
-	background-image: linear-gradient(60deg, red, white, silver);
+	background-image: linear-gradient(120deg, darkgrey, white, darkgrey);
+	background-repeat: no-repeat;
+	background-size: 140% 140%;
 }
 h1{
 	font-weight: 600;
@@ -50,10 +52,9 @@ button:active{
 	font-size: 15px;
 	box-shadow: 3px 3px #333;
 }
-.icon{
+.icon .fa{
 	font-size: 40px;
 	margin-right: 15px;
-	border: none;
 }
 .icon .fa:hover{
 	font-size: 42px;

@@ -1,4 +1,4 @@
-from routes import db
+'''from routes import db
 import bcrypt
 
 class User(db.Model):
@@ -8,4 +8,4 @@ class User(db.Model):
 	psw_hash = db.Column(db.String(128))
 
 	def __repr__(self):
-		return f'User {self.username}'
+		return f'User {self.username}'''
