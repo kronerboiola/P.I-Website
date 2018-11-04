@@ -2,9 +2,9 @@ from flask import *
 from flask_mail import Mail, Message
 from forms import *
 from random import choice
-'''from models import *
+from models import *
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate'''
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.secret_key = 'guess-it'
@@ -16,14 +16,14 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 mail = Mail(app)
-error_messages = ['Prepare-se para consequências inesperadas', 'And another page bites the dust...',
+error_messages = ['Prepare for unforeseen consequences', 'And another page bites the dust...',
  'Away with you, vile error!', 'Mayday, Mayday!!!',
   'O problema é na mangueira!', 'Houston, nós temos um problema']
-'''app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)'''
+migrate = Migrate(app, db)
 
 @app.route('/')
 @app.route('/home')
@@ -40,45 +40,56 @@ def sign():
 	if form.validate_on_submit():
 		session['username'] = form.user.data
 		session['email'] = form.email.data
-		#session['password'] = form.passw.data
-		session['logged'] = True
-		msg = Message(f'{session["username"]}, obrigado por increver-se na newsletter!',
+		session['password'] = form.password.data
+		msg = Message(f'{session["username"]}, obrigado por inscrever-se na newsletter!',
 		 sender='101airbornekiller@gmail.com', recipients=[session['email']])
 		msg.html = render_template('email-body.html')
 		try:
 			mail.send(msg)
 		except: # smtplib.SMTPRecipientsRefused:
-			return flash("There's an error with the typed e-mail!", 'error')
-		flash('User %s registered!' % form.user.data, 'info')
-		'''
+			flash("There's an error with the typed e-mail!", 'error')
+			return redirect('/subscription')
+		flash('User %s registered!' % session['username'], 'info')
+
 		user = User(username=session['username'],
 		 psw_hash=bcrypt.hashpw(session['password'].encode('utf8'),
 		  bcrypt.gensalt()))
-		db.session.add(user)
-		db.session.commit()'''
+		try:
+			db.session.add(user)
+			db.session.commit()
+		except:
+			flash('An error happened while trying to signup.')
+			return redirect('/subscription')
+			#return flash('An error happened while trying to signup.') #needs to be valid HTTP response!!!
+		session['logged'] = True
 		return redirect('/home')
 	return render_template('signup.html', title='Sign Up',
 	 form=form)
 
-'''def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d'''
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	form = CustomForm('Login')
+	if form.validate_on_submit():
+		session['username'] = form.user.data
+		session['password'] = form.password.data
+		user = User.query.filter_by(username=session['username']).first()
+		if user is None or not user.check_psw(session['password']):
+			flash('Wrong username or password!')
+			session['logged'] = False
+			return redirect('/login')
+		session['logged'] = True
+		flash('Successfull login!')
+		return redirect('/home')
+	return render_template('login.html', title='Login', form=form)
 
 '''@app.route('/login', methods=['GET', 'POST'])
 def login():
-	import sqlite3
-	con = sqlite3.connect('users.sqlite3')
-	con.row_factory = dict_factory
-	cursor = con.cursor()#dictionary=True, buffered=True)
 	form = CustomForm('Login')
 	if form.validate_on_submit():
 		session['username'] = form.user.data
 		session['password'] = form.passw.data
-		cursor.execute(f"SELECT * FROM user WHERE username = {session['username']}")
-		if cursor is not None:
-			data = cursor.fetchone()
+		user = User.query.filter_by(username=session['username']).first()
+		if user is None:
 			try:
 				password = data['psw_hash']
 			except:
@@ -108,7 +119,6 @@ def logout():
 	except KeyError:
 		return redirect('/home')
 	session['logged'] = False
-	#logged = False
 	return render_template('logout.html')
 
 @app.errorhandler(404)

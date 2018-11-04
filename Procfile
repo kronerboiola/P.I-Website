@@ -1,1 +1,1 @@
-web: python hello.py
+web: flask translate compile;

@@ -43,12 +43,19 @@
 				<p style="color: red;"> {{ error }} </p>
 				{% endfor %}
 
-				<p> {{ form.email(placeholder="E-mail", size=22) }} </p>
+				<p> {{ form.email(placeholder="E-mail", size=24) }} </p>
 				{% for error in form.email.errors %}
+				<div class="errorbox">
+					<p style="color: red;"> {{ error }} </p>
+				</div>
+				{% endfor %}
+
+				<p> {{ form.password(placeholder="Password", size=22) }} </p>
+				{% for error in form.password.errors %}
 				<p style="color: red;"> {{ error }} </p>
 				{% endfor %}
 
-				<p>{{ form.submit() }}</p>
+				<p> {{ form.submit() }} </p>
 			</form>
 			{% endif %}
 
@@ -73,15 +80,9 @@
 			{% endwith %}
 
 			<h4>Visite nossas outras páginas também!!!</h4>
-			<a href="https://facebook.com" class="icon">
-				<span class="fa fa-facebook-square"></span>
-			</a>
-			<a href="https://store.steampowered.com" class="icon">
-				<span class="fa fa-steam-square"></span>
-			</a>
-			<a href="https://twitter.com" class="icon">
-				<span class="fa fa-google-plus-official"></span>
-			</a>
+			<a href="https://facebook.com" class="icon"><span class="fa fa-facebook-square"></span></a>
+			<a href="https://store.steampowered.com" class="icon"><span class="fa fa-steam-square"></span></a>
+			<a href="https://twitter.com" class="icon"><span class="fa fa-google-plus-official"></span></a>
 		</div>
 	</div>
 </body>

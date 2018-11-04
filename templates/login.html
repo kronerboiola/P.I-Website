@@ -3,69 +3,80 @@
 <head>
 	<title>GahioGames - {{title}}</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/InscriçãoCSS.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sign.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menubar.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="static/img/fallout.ico" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
-	<ul id="topo">
-		<li><a href="homepage.html">Home</a></li>
-		<li><a href="info.html">Info</a></li>
-		<li class="drop">
-			<a href="assuntos.html" class="drop">Assuntos</a>
-			<div class="cont">
-				<a href="#">Redes</a>
-				<a href="#">Hardware</a>
-				<a href="#">Software</a>
-			</div>
-		</li>
-		<li><a href="contato.html">Contato</a></li>
-		<li><a href="inscrição.html"><b>Inscreva-se</b></a></li>
-	</ul>
-	<br>
-	<h1>Login</h1>
-	<article>
-		<h4>Para saber de todas nossas novidades!!!</h4>
-		<form autocomplete="on" name="formula" method="post">
-			{{ form.hidden_tag() }}
-			<p> {{ form.user.label }} {{ form.user(size=32) }} </p>
-			{% for error in form.user.errors %}
-			<p style="color: red;"> {{ error }} </p>
-			{% endfor %}
-
-			<p> {{ form.passw.label }} {{ form.passw(size=16) }} </p>
-			{% for error in form.passw.errors %}
-			<p style="color: red;"> {{ error }} </p>
-			{% endfor %}
-
-			<p>{{ form.submit() }}</p>
-		</form>
-		{% if session["logged"] %}
-		<h2>You are logged as {{ session["username"] }}</h2>
-		<a href="{{ url_for('logout') }}">Sair</a>
-		{% endif %}
-
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<ul style="text-align: center;">
-			{% for msg in messages %}
-			<li style="float: none;">{{ msg }}</li>
-			{% endfor %}
+	<nav>
+		<ul id="menu" style="top: -16px; left: 0;">
+			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropdown">&middot;Notícias&middot;</a>
+				<div class="cont">
+					<a href="#">Redes</a>
+					<a href="#">Hardware</a>
+					<a href="#">Software</a>
+				</div>
+			</li>
+			<li><a href="{{ url_for('contact') }}">Contato</a></li>
+			<li>
+				<a href="{{ url_for('sign') }}"><b>Inscreva-se</b></a>
+			</li>
 		</ul>
-		{% endif %}
-		{% endwith %}
+	</nav>
 
-		<h4>Visite nossas outras páginas também!!!</h4>
-		<a href="https://facebook.com" class="ico"><span class="fa fa-facebook-square"></span></a>
-		<a href="https://store.steampowered.com" class="ico"><span class="fa fa-steam-square"></span></a>
-		<a href="https://twitter.com" class="ico"><span class="fa fa-twitter"></span></a>
-	</article>
-	<!--{% extends "homepage.html" %}
-	{% block content %}
-	{% endblock %}
-	<br>
-	<h1>HAHAHAHA</h1>
-	<br>
-	<p>fdhdshfhusdhfosudhfsudifhs</p>-->
+	<div><!-- class="heroimg"-->
+		<div style="text-align: center;">
+			<br>
+			<h1>Log In</h1>
+
+			{% if not session["logged"] %}
+			<form autocomplete="on" method="post">
+				{{ form.hidden_tag() }}
+				<p> {{ form.user(placeholder="Username", size=26) }} </p>
+				{% for error in form.user.errors %}
+				<p style="color: red;"> {{ error }} </p>
+				{% endfor %}
+
+				<p> {{ form.password(placeholder="Password", size=22) }} </p>
+				{% for error in form.password.errors %}
+				<p style="color: red;"> {{ error }} </p>
+				{% endfor %}
+
+				<p> {{ form.submit() }} </p>
+			</form>
+			{% endif %}
+
+			{% if session["logged"] %}
+			<br>
+			<h2 style="font-family: sans-serif;">You are logged as {{ session["username"] }}</h2>
+			<a href="{{ url_for('logout') }}">
+				<button id="circle">
+					<i class="fa fa-sign-out fa-2x" style="color: white;"></i>
+				</button>
+			</a>
+			{% endif %}
+
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<ul style="text-align: center;">
+				{% for msg in messages %}
+				<li style="float: none;">{{ msg }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{% endwith %}
+
+			<h4>Visite nossas outras páginas também!!!</h4>
+			<a href="https://facebook.com" class="icon"><span class="fa fa-facebook-square"></span></a>
+			<a href="https://store.steampowered.com" class="icon"><span class="fa fa-steam-square"></span></a>
+			<a href="https://twitter.com" class="icon">
+				<span class="fa fa-google-plus-official"></span>
+			</a>
+		</div>
+	</div>
 </body>
 </html>

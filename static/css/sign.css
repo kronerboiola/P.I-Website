@@ -52,6 +52,10 @@ button:active{
 	font-size: 15px;
 	box-shadow: 3px 3px #333;
 }
+.errorbox{
+	padding: 10px 15px;
+	box-shadow: 5px 5px 3px 2px;
+}
 .icon .fa{
 	font-size: 40px;
 	margin-right: 15px;
