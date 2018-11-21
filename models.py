@@ -1,4 +1,4 @@
-from routes_bd import db
+from routes import db
 import bcrypt
 
 class User(db.Model):

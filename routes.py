@@ -36,7 +36,7 @@ def about():
 
 @app.route('/subscription', methods=['GET', 'POST'])
 def sign():
-	form = CustomForm()
+	form = CustomForm('Quero a newsletter!')
 	if form.validate_on_submit():
 		session['username'] = form.user.data
 		session['email'] = form.email.data
@@ -49,7 +49,6 @@ def sign():
 		except: # smtplib.SMTPRecipientsRefused:
 			flash("There's an error with the typed e-mail!", 'error')
 			return redirect('/subscription')
-		flash('User %s registered!' % session['username'], 'info')
 
 		user = User(username=session['username'],
 		 psw_hash=bcrypt.hashpw(session['password'].encode('utf8'),
@@ -57,6 +56,7 @@ def sign():
 		try:
 			db.session.add(user)
 			db.session.commit()
+			flash('User %s registered!' % session['username'], 'info')
 		except:
 			flash('An error happened while trying to signup.')
 			return redirect('/subscription')

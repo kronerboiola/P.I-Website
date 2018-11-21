@@ -25,26 +25,25 @@
 	</nav>
 
 	<br>
-	<h1>Contate-nos</h1>
-	<h4>Aceitamos críticas e sugestões!</h4>
 	<br>
-	<div>
-		<label for="msg_type">Escolha o tipo de mensagem: </label>
-		<select name="msg_type">
-			{% for opt in msg_types %}
-			<option value="{{ opt }}">{{ opt }}</option>
-			{% endfor %}
-		</select>
-		<h3>Você vai realizar: {{ request.form.getlist("msg_type") }}</h3>
-	</div>
-	<form method="post">
-		<textarea cols="40" rows="8" placeholder="Escreva aqui... "></textarea>
+	<section>
+		<h1>Contate-nos</h1>
+		<h4>Aceitamos críticas e sugestões!</h4>
 		<br>
-		<br>
-		<div style="margin-left: 45%;">
+		<form method="post">
+			<label for="msg_type">Escolha o tipo de mensagem: </label>
+			<select name="msg_type">
+				{% for opt in msg_types %}
+				<option value="{{ opt }}">{{ opt }}</option>
+				{% endfor %}
+			</select>
+			<h3>Você realizou: {{ request.form.getlist("msg_type")[0] }}</h3>
+			<textarea cols="40" rows="8" placeholder="Escreva aqui... " style="resize: none;" required></textarea>
+			<br>
+			<br>
 			<button type="submit" value="submit">Enviar</button>
 			<button style="background-color: red;" value="reset" type="reset">Limpar</button>
-		</div>
-	</form>
+		</form>
+	</section>
 </body>
 </html>

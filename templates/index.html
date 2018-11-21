@@ -33,26 +33,34 @@
 				</div>
 			</li>
 			<li><a href="{{ url_for('contact') }}">Contato</a></li>
-			<li><a href="{{ url_for('sign') }}">
-				<b>Inscreva-se</b>
-			</a></li>
+			<li>
+				{% if not session["logged"] %}
+					<a href="{{ url_for('sign') }}">
+						<b>Inscreva-se</b>
+					</a>
+				{% else %}
+					<a href="{{ url_for('sign') }}">
+						<i class="fa fa-user-circle-o fa-2x"></i>
+					</a>
+				{% endif %}
+			</li>
 		</ul>
 	</nav>
 
 	<div class="heroimg">
 		<div class="herotxt">
 			<h1></h1>
-				<span class="dot"></span> 
+				{#<span class="dot"></span> 
 				<span class="dot"></span> 
 				<span class="dot"></span>
-				<span class="dot"></span>
-				<button id="circle">
+				<span class="dot"></span>#}
+				<button id="circle" onclick="document.getElementById('slide_down').scrollIntoView();">
 					<i class="fa fa-chevron-down fa-3x"></i>
 				</button>
 		</div>
 	</div>
 
-	<section>
+	<section id="slide_down">
 		<article>
 			<h2>Apresentação</h2>
 			<p>Este é um site criado por Rafael, Paulo e G. Gahio, alunos do IFC Blumenau

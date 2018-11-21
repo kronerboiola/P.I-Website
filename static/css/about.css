@@ -1,0 +1,103 @@
+body{
+	background-color: gainsboro;
+}
+*{
+	text-align: center;
+}
+h1{
+	font-size: 48px;
+	margin-top: 64px;
+	text-shadow: 1px 1px blue;
+	font-family: sans-serif;
+}
+h1:hover{
+	text-shadow: 2px 2px darkblue;
+}
+h2{
+	margin-left: 15px;
+}
+#menu{
+	list-style-type: none;
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #333;
+}
+li{
+	display: inline;
+	float: left;
+}
+li:last-child{
+	float: right;
+	margin-right: 40px;
+}
+.link:visited{
+	color: brown;
+}
+.link:hover{
+	font-size: 20px;
+	color: #ff4500;
+}
+.link:active{
+	color: lime;
+}
+li a{
+	display: block;
+	padding: 12px;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+	font-size: 22px;
+}
+li a:hover{
+	background-color: black;
+	outline-style: dashed;
+	outline-width: 1px;
+	outline-color: orange;
+	color: lime;
+}
+.drop{
+	display: inline-block;
+}
+.cont{
+	display: none;
+	position: absolute;
+	box-shadow: 5px 7px 7px 5px rgba(0, 0, 0, 0.3);
+	background-color: gainsboro;
+	z-index: 1;
+	width: 150px;
+}
+.cont a{
+	text-decoration: none;
+	padding: 10px 12px;
+	display: block;
+	color: brown;
+}
+.cont a:hover{
+	background-color: lightgrey;
+	color: indigo;
+	font-size: 23px;
+}
+.drop:hover .cont{
+	display: block;
+	border-radius: 5px;
+}
+blockquote{
+	text-indent: 15px;
+}
+blockquote::selection{
+	color: red;
+}
+blockquote::first-letter{
+	font-size: 26px;
+}
+h5, p{
+	text-align: center;
+}
+img{
+	width: 100px;
+	height: 40px;
+}
