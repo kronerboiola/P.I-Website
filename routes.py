@@ -34,6 +34,10 @@ def home():
 def about():
 	return render_template('about.html', title='About Us')
 
+@app.route('/hardware')
+def hardware():
+	return render_template('hardware.html', title='Hardware')
+
 @app.route('/subscription', methods=['GET', 'POST'])
 def sign():
 	form = CustomForm('Quero a newsletter!')
