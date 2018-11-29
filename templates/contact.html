@@ -14,9 +14,9 @@
 			<li class="dropdown">
 				<a href="javascript:void(0)" class="dropdown">&middot;Notícias&middot;</a>
 				<div class="cont">
-					<a href="#">Redes</a>
-					<a href="#">Hardware</a>
-					<a href="#">Software</a>
+					<a href="{{ url_for('redes') }}">Redes</a>
+					<a href="{{ url_for('hardware') }}">Hardware</a>
+					<a href="{{ url_for('software') }}">Software</a>
 				</div>
 			</li>
 			<li><a href="{{ url_for('contact') }}">Contato</a></li>

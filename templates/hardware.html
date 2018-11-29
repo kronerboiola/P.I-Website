@@ -1,63 +1,67 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>GahioGames - Home</title>
-	<script src="/static/js/sticky.js"></script>
-	<script src="/static/js/slideshow.js"></script>
-	<script src="/static/js/menu_slider.js"></script>
-	<script src="/static/js/typewriter.js"></script>
+	<title>GahioGames - {{title}}</title>
+	<script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/slideshow.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="/static/img/fallout.ico" rel="shortcut icon" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="/static/css/hardware.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/slideshow.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/custom_scrollbar.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/menubar.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/responsiveness.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/hero_bg.css">
+	<link href="{{ url_for('static', filename='img/fallout.ico') }}" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom_scrollbar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menubar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsiveness.css') }}">
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload="get_msg('Informática');typewrite()">
+<body>
 	<nav>
-		<ul id="menu">
-			<li><a href="/home" >Home</a></li>
-			<li><a href="/about">About</a></li>
+		<ul id="menu" style="top: -16px; left: 0;">
+			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
 			<li class="dropdown">
 				<a href="javascript:void(0)" class="dropdown">&middot;Notícias&middot;</a>
 				<div class="cont">
-					<a href="#">Redes</a>
-					<a href="/hardware">Hardware</a>
-					<a href="#">Software</a>
+					<a href="{{ url_for('redes') }}">Redes</a>
+					<a href="{{ url_for('hardware') }}">Hardware</a>
+					<a href="{{ url_for('software') }}">Software</a>
 				</div>
 			</li>
-			<li><a href="/contact">Contato</a></li>
-			<li><a href="/subscription">
-				<b>Inscreva-se</b>
-			</a></li>
+			<li><a href="{{ url_for('contact') }}">Contato</a></li>
+			<li>
+				{% if not session["logged"] %}
+					<a href="{{ url_for('sign') }}">
+						<b>Inscreva-se</b>
+					</a>
+				{% else %}
+					<a href="{{ url_for('sign') }}">
+						<i class="fa fa-user-circle-o fa-2x"></i>
+					</a>
+				{% endif %}
+			</li>
 		</ul>
 	</nav>
 
 	<section>
 		<article>
-			<h2 style="text-align: center;">Hardware</h2>
+			<h2 style="text-align: center; font-size: 42px;">Hardware</h2>
 			<p>	Hardware é a parte física de um computador, é formado pelos componentes eletrônicos, como por exemplo, circuitos de fios e luz, placas, utensílios, correntes, e qualquer outro material em estado físico, que seja necessário para fazer com o que computador funcione.</p>
 
 			<p>	O hardware é basicamente utilizado por computadores e elementos eletrônicos. Qualquer equipamento físico como chaves, fechaduras, correntes e peças do próprio computador, são chamados de hardware.</p>
 
-			<p> Não apenas os componentes externos, como também os que estão dentro do gabinete do computador são classificados como hardwares. Exemplo: placa de memória RAM, disco rígido, leitor de CD e DVD e etc.</p>
+			<p> Não apenas os componentes externos, como também os que estão dentro do gabinete do computador são classificados como hardwares. Exemplo: memória RAM, disco rígido, leitor de CD e DVD e etc.</p>
 
 			<p>Existem dois tipos de Hardware no computador: Os Internos e os externos: O meio para efetuar a conexão de todos os computadores entre si na rede.</p>
 
-			<p><b> Internos Processador:</b> O "cérebro" do computador, o processador é quem faz todas as escolhas lógicas e processa os dados enviados pelo usuário. HD: O HD Armazena dados de forma permanentemente (não são apagados ao desligar o computador) Memória RAM: A memória RAM é uma unidade de armazenamento rápido. Ela segura as informações que estão sendo criadas ou manipuladas pelo usuário, e manda para o processador. Quando o computador é reiniciado, os dados da memória RAM são apagados. Placa mãe: A placa mãe é o suporte para as peças, é onde tudo fica conectado e interligado. Placa de Vídeo: sua função é gerar imagens a partir dos códigos binários enviados pelo processador, e enviá-las para o monitor.</p>
+			<p><b> Internos:</b> O "cérebro" do computador, o processador é quem faz todas as escolhas lógicas e processa os dados enviados pelo usuário. HD: O HD Armazena dados de forma permanentemente (não são apagados ao desligar o computador) Memória RAM: A memória RAM é uma unidade de armazenamento rápido. Ela segura as informações que estão sendo criadas ou manipuladas pelo usuário, e manda para o processador. Quando o computador é reiniciado, os dados da memória RAM são apagados. Placa mãe: A placa mãe é o suporte para as peças, é onde tudo fica conectado e interligado. Placa de Vídeo: sua função é gerar imagens a partir dos códigos binários enviados pelo processador, e enviá-las para o monitor.</p>
 
-			 <p><b>	Externos Monitor:</b> o monitor gera a imagem transmitida pela placa de vídeo. Pendrive: É um dispositivo de armazenamento de dados portátil, pode ser plugado em qualquer computador com porta USB. Teclado: serve para o usuário digitar as informações; Etc: mouse, impressora, scanner, webcam, microfone...</p>
+			 <p><b>	Externos:</b> o monitor gera a imagem transmitida pela placa de vídeo. Pendrive: É um dispositivo de armazenamento de dados portátil, pode ser plugado em qualquer computador com porta USB. Teclado: serve para o usuário digitar as informações; Etc: mouse, impressora, scanner, webcam, microfone...</p>
 
 			 <h2 style="text-align: center;">Placa Mãe</h2>
 
-			 <p>	A placa mãe é um componente de hardware que liga todas as outras peças, fazendo a comunicação entre elas. A primeira placa mãe surgiu inicialmente em um computador da empresa IBM, no ano de 1982. O design das placas mãe continua basicamente o mesmo das primeiras, até os dias atuais. A placa da IBM assim como as sucessoras tem portas e slots para vários tipos de Hardwares, que são ligados nela para que a comunicação entre os componentes seja possível. HD, Memória, processador, Leitores Ópticos, Fontes, placas de vídeo, tudo é conectado à placa Mãe. Um pouco sobre o que a placa mãe faz com cada peça conectada:</p>
+			 <p>A placa mãe é um componente de hardware que liga todas as outras peças, fazendo a comunicação entre elas. A primeira placa mãe surgiu inicialmente em um computador da empresa IBM, no ano de 1982. O design das placas mãe continua basicamente o mesmo das primeiras, até os dias atuais. A placa da IBM assim como as sucessoras tem portas e slots para vários tipos de Hardwares, que são ligados nela para que a comunicação entre os componentes seja possível. HD, Memória, processador, Leitores Ópticos, Fontes, placas de vídeo, tudo é conectado à placa Mãe. Um pouco sobre o que a placa mãe faz com cada peça conectada:</p>
 
 			<p><b>Processador:</b>	A placa mãe transmite os “pedidos” de dados para a memória RAM e para o HD, e transfere estes dados para o processador
 			<b>Placa de vídeo:</b>	A placa mãe envia as informações e dados do Processador e HD para a placa de vídeo, e a placa de vídeo envia estes para o monitor.</p>
@@ -73,8 +77,10 @@
 
 
 			<p>	As placas mãe estão presas a evolução de outros Hardwares. Quando é lançado um novo processador, dificilmente este processador será compatível com uma placa anterior, mesmo se esta for nova. Estes problemas de compatibilidade, juntado ao problema de algumas placas não aceitarem processadores de outras empresas, faz com que seja necessário trocar, algumas vezes, o computador inteiro.  Ainda tem melhorias nos pentes de memória, HD’s leitores, gravadores e placa de vídeo.</p>
+			<br>
 		</article>
 
 	</section>
+	<br>
 </body>
 </html>

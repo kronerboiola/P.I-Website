@@ -38,6 +38,14 @@ def about():
 def hardware():
 	return render_template('hardware.html', title='Hardware')
 
+@app.route('/redes')
+def redes():
+	return render_template('redes.html', title='Redes de Computadores')
+
+@app.route('/software')
+def software():
+	return render_template('software.html', title='Software')
+
 @app.route('/subscription', methods=['GET', 'POST'])
 def sign():
 	form = CustomForm('Quero a newsletter!')

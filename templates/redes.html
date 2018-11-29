@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>GahioGames - {{title}}</title>
+	<script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/slideshow.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="{{ url_for('static', filename='img/fallout.ico') }}" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom_scrollbar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menubar.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsiveness.css') }}">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<nav>
+		<ul id="menu" style="top: -16px; left: 0;">
+			<li><a href="{{ url_for('home') }}" target="_blank">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropdown">&middot;Notícias&middot;</a>
+				<div class="cont">
+					<a href="{{ url_for('redes') }}">Redes</a>
+					<a href="{{ url_for('hardware') }}">Hardware</a>
+					<a href="{{ url_for('software') }}">Software</a>
+				</div>
+			</li>
+			<li><a href="{{ url_for('contact') }}">Contato</a></li>
+			<li>
+				{% if not session["logged"] %}
+					<a href="{{ url_for('sign') }}">
+						<b>Inscreva-se</b>
+					</a>
+				{% else %}
+					<a href="{{ url_for('sign') }}">
+						<i class="fa fa-user-circle-o fa-2x"></i>
+					</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+
+	<section>
+		<article style="margin-right: 10px;">
+			<h2 style="text-align: center; font-size: 42px;">Redes de Computadores</h2>
+			<br>
+			<p>	Uma Rede de computadores é formada por um conjunto de máquinas eletrônicas com processadores capazes de trocar informações e compartilhar recursos, interligados por um sub-sistema de comunicação, ou seja, é quando há pelo menos dois ou mais computadores, e outros dispositivos interligados entre si de modo a poderem compartilhar recursos físicos e lógicos, estes podem ser do tipo: dados, impressoras, mensagens, entre outros. Uma rede de computadores ou rede de dados é uma rede de telecomunicações digital que permite que compartilhemos recursos. Em uma rede de computadores, os dispositivos de computação em rede trocam dados entre si usando um link de dados. As conexões podem ser estabelecidas usando mídia de cabo ou mídia sem fio.</p>
+
+			<h2 style="text-align: center;">Como ocorre a comunicação</h2>
+
+			<p>O sistema de comunicação vai se constituir de um arranjo topológico, interligando os vários módulos processadores através de enlaces físicos (meios de transmissão ou rede de transmissão), e de um conjunto de regras com o fim de organizar a comunicação (protocolos).
+
+			A Internet é um amplo sistema de comunicação que conecta muitas redes de computadores. Existem várias formas e recursos de diversos equipamentos que podem ser interligados e compartilhados, mediante meios de acesso, protocolos e requisitos de segurança.
+
+			Os meios de comunicação podem ser: linhas telefônicas, cabo, satélite ou comunicação sem fio(wireless).
+
+			O objetivo das redes de computadores é permitir a troca de dados entre computadores e a partilha de recursos de hardware e software.
+
+			Uma rede de computadores também é formada por um número ilimitado mas finito de módulos autônomos de processamento interconectados, no entanto, a independência dos vários módulos de processamento é preservada na sua tarefa de compartilhamento de recursos e troca de informações.
+
+			Não existe nesses sistemas a necessidade de um sistema operacional único, mas sim a cooperação entre os vários sistemas operacionais na realização das tarefas de compartilhamento de recursos e troca de informações.</p>
+
+			<h2 style="text-align: center;">Pacotes de rede</h2>
+
+			<p>Os links de comunicação por computador que não suportam pacotes, como os links tradicionais de telecomunicações peer-to-peer, simplesmente transmitem dados como um fluxo de bits. No entanto, a maioria das informações em redes de computadores é transportada em pacotes. Um pacote de rede é uma unidade de dados formatada (uma lista de bits ou bytes, normalmente algumas dezenas de bytes com alguns Kb de comprimento) carregados por uma rede comutada por pacotes. Os pacotes são enviados através da rede para o seu destino. Uma vez que os pacotes chegam, eles são remontados em sua mensagem original.</p>
+			<br>
+		</article>
+
+	</section>
+	<br>
+</body>
+</html>
