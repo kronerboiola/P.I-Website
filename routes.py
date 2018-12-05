@@ -138,5 +138,5 @@ def not_found(e):
 	return render_template('404.html', msg=choice(error_messages)), 404
 
 if __name__ == '__main__':
-	#db.create_all()
+	db.create_all()
 	app.run(debug=True, host='0.0.0.0')
