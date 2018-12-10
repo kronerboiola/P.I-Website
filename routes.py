@@ -2,13 +2,20 @@ from flask import *
 from flask_mail import Mail, Message
 from forms import *
 from random import choice
-from models import *
+#from models import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_wtf.csrf import CSRFProtect
+import bcrypt
 
 app = Flask(__name__)
-app.secret_key = 'guess-it'
-app.config['MAIL_SERVER']='smtp.gmail.com'
+CSRFProtect(app)
+#app.secret_key = 'guess-it'
+app.config.update(dict(
+    SECRET_KEY="powerful secretkey",
+    WTF_CSRF_SECRET_KEY="powerful secretkey"
+))
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = '101airbornekiller@gmail.com'
 app.config['MAIL_PASSWORD'] = 'polka0789'
@@ -19,11 +26,12 @@ mail = Mail(app)
 error_messages = ['Prepare for unforeseen consequences', 'And another page bites the dust...',
  'Away with you, vile error!', 'Mayday, Mayday!!!',
   'O problema é na mangueira!', 'Houston, nós temos um problema']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+#migrate = Migrate(app, db)
+#db.create_all()
 
 @app.route('/')
 @app.route('/home')
@@ -49,18 +57,21 @@ def software():
 @app.route('/subscription', methods=['GET', 'POST'])
 def sign():
 	form = CustomForm('Quero a newsletter!')
+	print(form.errors)
 	if form.validate_on_submit():
+		print('OLA ', form.errors)
 		session['username'] = form.user.data
 		session['email'] = form.email.data
 		session['password'] = form.password.data
-		msg = Message(f'{session["username"]}, obrigado por inscrever-se na newsletter!',
+		'''msg = Message(f'{session["username"]}, obrigado por inscrever-se na newsletter!',
 		 sender='101airbornekiller@gmail.com', recipients=[session['email']])
 		msg.html = render_template('email-body.html')
 		try:
 			mail.send(msg)
 		except: # smtplib.SMTPRecipientsRefused:
 			flash("There's an error with the typed e-mail!", 'error')
-			return redirect('/subscription')
+			print('POLkA ', form.errors)
+			#return redirect('/subscription')'''
 
 		user = User(username=session['username'],
 		 psw_hash=bcrypt.hashpw(session['password'].encode('utf8'),
@@ -75,6 +86,7 @@ def sign():
 			#return flash('An error happened while trying to signup.') #needs to be valid HTTP response!!!
 		session['logged'] = True
 		return redirect('/home')
+	print(form.errors)
 	return render_template('signup.html', title='Sign Up',
 	 form=form)
 
@@ -128,7 +140,10 @@ def turma():
 def logout():
 	try:
 		session.pop('username')
+		session.pop('email')
+		session.pop('password')
 	except KeyError:
+		session['logged'] = False
 		return redirect('/home')
 	session['logged'] = False
 	return render_template('logout.html')
@@ -138,5 +153,18 @@ def not_found(e):
 	return render_template('404.html', msg=choice(error_messages)), 404
 
 if __name__ == '__main__':
+	class User(db.Model):
+		id = db.Column(db.Integer, primary_key=True)
+		username = db.Column(db.String(32), index=True, unique=True)
+		#email = db.Column(db.String(64), index=True, unique=True) #really needed?
+		psw_hash = db.Column(db.String(256))
+
+		def check_psw(self, psw):
+			return bcrypt.checkpw(self.psw_hash.encode('utf8'), psw)
+
+		def __repr__(self):
+			return f'User {self.username}'
+
 	db.create_all()
+	db.session.commit()
 	app.run(debug=True, host='0.0.0.0')

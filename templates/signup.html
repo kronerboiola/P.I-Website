@@ -36,8 +36,9 @@
 			<h4>Para saber de todas nossas novidades!!!</h4>
 
 			{% if not session["logged"] %}
-			<form autocomplete="on" method="post">
+			<form autocomplete="on" method="post" action="/subscription">
 				{{ form.hidden_tag() }}
+				{{ form.csrf_token() }}
 				<p> {{ form.user(placeholder="Username", size=26) }} </p>
 				{% for error in form.user.errors %}
 				<p style="color: red;"> {{ error }} </p>
@@ -45,9 +46,7 @@
 
 				<p> {{ form.email(placeholder="E-mail", size=24) }} </p>
 				{% for error in form.email.errors %}
-				<div class="errorbox">
 					<p style="color: red;"> {{ error }} </p>
-				</div>
 				{% endfor %}
 
 				<p> {{ form.password(placeholder="Password", size=22) }} </p>

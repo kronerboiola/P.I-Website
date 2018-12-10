@@ -1,4 +1,4 @@
-window.onload = function() {
+/*window.onload = function() {
     var index = 0;
     var img_list = ["url('../img/fjords.png')", "url('../img/california-rocks.jpg')", 
     "url('../img/mountain-river.jpg')", "url('../img/forest-sunset.jpg')"];
@@ -15,12 +15,12 @@ window.onload = function() {
         if (index >= img_list.length) {
             index = 0;
         }
-        /*if (index > slides.length) {index = 1}
-        slides[index-1].style.display = "block";*/
+        if (index > slides.length) {index = 1}
+        slides[index-1].style.display = "block";
         setTimeout(slide, 1800);
     }
 
     function current_slide(n) {
     	slide(index = n);
     }
-}
+}*/
