@@ -16,6 +16,4 @@ The site will be available on the local network.
 This project is licensed under the MIT license - see LICENSE.md file for details
 
 ## Authors
-- **Rafael Malon** - Made the code
-- **Paulo Maciel** - Gave some tips and ideas
-- **G. Gahio** - Made part of the project summary
+- **Rafael Malon**
